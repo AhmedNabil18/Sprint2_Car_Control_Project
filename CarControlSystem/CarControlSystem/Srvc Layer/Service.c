@@ -11,6 +11,7 @@
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*-*-*-*-*- GLOBAL STATIC VARIABLES *-*-*-*-*-*/
 enuSrvc_Status_t genu_SrvcStatus = SRVC_STATUS_UNINITIALIZED;
+extern  uint8_t gau8_buttons[BUTTONS_USED_NUM];
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*--*-*-*- FUNCTIONS IMPLEMENTATION -*-*-*-*-*-*/
 
@@ -55,13 +56,13 @@ enuSrvc_Status_t Service_ReportButton(uint8_t* pu8_button)
 {
 	uint8_t u8_ButtonsIndex=0;
 	uint8_t u8_ButtonCurrState=0;
-	for (u8_ButtonsIndex=1 ; u8_ButtonsIndex<=BUTTONS_USED_NUM; u8_ButtonsIndex++)
+	for (u8_ButtonsIndex=0 ; u8_ButtonsIndex<BUTTONS_USED_NUM; u8_ButtonsIndex++)
 	{
-		Button_updateState(u8_ButtonsIndex);
-		Button_getState(u8_ButtonsIndex, &u8_ButtonCurrState);
+		Button_updateState(gau8_buttons[u8_ButtonsIndex]);
+		Button_getState(gau8_buttons[u8_ButtonsIndex], &u8_ButtonCurrState);
 		if(u8_ButtonCurrState == BUTTON_STATE_PRESSED)
 		{
-			*pu8_button = u8_ButtonsIndex;
+			*pu8_button = gau8_buttons[u8_ButtonsIndex];
 			return SRVC_STATUS_ERROR_OK;
 		}
 	}
@@ -103,6 +104,7 @@ enuSrvc_Status_t Service_UpdateMotors(uint8_t u8_motorAction, uint8_t u8_motorSp
 		break;
 	case SPEED_90F:
 		u8_speed = 90;
+		Dio_writePin(DIO_LED1_CHANNEL_ID,PIN_LOW);
 		break;
 	case SPEED_30B:
 		u8_speed = 30;
@@ -122,10 +124,9 @@ enuSrvc_Status_t Service_UpdateMotors(uint8_t u8_motorAction, uint8_t u8_motorSp
 		u8_leftMotorDir = MOTOR_BKWRD;
 		u8_rightMotorDir = MOTOR_FRWRD;
 	}
-	if( MOTOR_STATUS_ERROR_OK != Motor_run(MOTOR_LEFT,u8_speed,u8_leftMotorDir))
+	if( MOTOR_STATUS_ERROR_OK != Motor_run(MOTOR_LEFT, u8_speed, u8_leftMotorDir))
 		return SRVC_STATUS_ERROR_NOK;
-	if( MOTOR_STATUS_ERROR_OK != Motor_run(MOTOR_RIGHT,u8_speed,u8_rightMotorDir))
+	if( MOTOR_STATUS_ERROR_OK != Motor_run(MOTOR_RIGHT, u8_speed, u8_rightMotorDir))
 		return SRVC_STATUS_ERROR_NOK;
-	Dio_writePin(DIO_LED1_CHANNEL_ID,PIN_HIGH);
 	return  SRVC_STATUS_ERROR_OK;
 }

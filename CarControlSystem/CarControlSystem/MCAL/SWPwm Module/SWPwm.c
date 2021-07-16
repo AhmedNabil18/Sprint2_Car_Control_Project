@@ -16,6 +16,16 @@ u8SWPwm_Channel_t gu8_currentPwmChannel = 0;
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*--*-*-*- FUNCTIONS IMPLEMENTATION -*-*-*-*-*-*/
 
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* Service Name: waveFunction
+* Sync/Async: Synchronous
+* Reentrancy: Non reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: None
+* Description: Function to be called inside the timer's ISR.
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 void waveFunction(void)
 {
 	Dio_togglePin(SWPwm_Channels[gu8_currentPwmChannel].u8_DioChannelID);
@@ -41,6 +51,17 @@ void waveFunction(void)
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 enuSWPwm_Status_t SWPwm_Init(void)
 {
+/**************************************************************************************/
+/*								Start of Error Checking								  */
+/**************************************************************************************/
+	
+/**************************************************************************************/
+/*								End of Error Checking								  */
+/**************************************************************************************/
+
+/**************************************************************************************/
+/*								Function Implementation								  */
+/**************************************************************************************/
 	GptInit();
 	Dio_init(strDio_pins);
 	return SWPWM_STATUS_ERROR_OK;
@@ -72,6 +93,10 @@ enuSWPwm_Status_t SWPwm_Start(u8SWPwm_Channel_t u8_ChannelID, uint32_t u32_Freq,
 	if((u8_DutyCycle > SWPWM_MAX_DUTYCYCLE) || (u8_DutyCycle < SWPWM_MIN_DUTYCYCLE))
 	{
 		return SWPWM_STATUS_DC_OUTRANGE;
+	}
+	if(gstr_ChannelsData[u8_ChannelID].enuChannelState == SWPWM_RUNNING)
+	{
+		return SWPWM_STATUS_RUNNING;
 	}
 	/**************************************************************************************/
 	/*								End of Error Checking								  */
@@ -121,18 +146,18 @@ enuSWPwm_Status_t SWPwm_Start(u8SWPwm_Channel_t u8_ChannelID, uint32_t u32_Freq,
 		default:
 			return SWPWM_STATUS_ERROR_NOK;
 	}
-	
+
 	f32_systemPeriodTime = (float32_t)u16_prescalerValue/SYS_CLOCK_FREQUENCY;
 	gu8_currentPwmChannel = u8_ChannelID;
 	gstr_ChannelsData[u8_ChannelID].u32_ONTicks = f32_waveONTime/f32_systemPeriodTime;
 	gstr_ChannelsData[u8_ChannelID].u32_OFFTicks = f32_waveOFFTime/f32_systemPeriodTime;
 	gstr_ChannelsData[u8_ChannelID].u8_ChannelID = u8_ChannelID;
-	
+
 	Dio_togglePin(SWPwm_Channels[u8_ChannelID].u8_DioChannelID);
 	GptStart_aSync(SWPwm_Channels[u8_ChannelID].u8_GptChannelID, gstr_ChannelsData[u8_ChannelID].u32_ONTicks, waveFunction);
 	gstr_ChannelsData[u8_ChannelID].u32_NxtTicks = gstr_ChannelsData[u8_ChannelID].u32_OFFTicks;
 	gstr_ChannelsData[u8_ChannelID].enuChannelState = SWPWM_RUNNING;
-	
+
 	return SWPWM_STATUS_ERROR_OK;
 }
 

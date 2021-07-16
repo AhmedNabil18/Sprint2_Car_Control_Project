@@ -22,7 +22,8 @@ App Layer/App.d App Layer/App.o: ../App\ Layer/App.c ../App\ Layer/App.h \
  ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/Button.h \
  ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/Button_Cfg.h \
  ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/..\..\MCAL\Dio\ Module\Dio.h \
- ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h
+ ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h \
+ ../App\ Layer/../Srvc\ Layer/Service_Cfg.h
 
 ../App\ Layer/App.h:
 
@@ -73,3 +74,5 @@ App Layer/App.d App Layer/App.o: ../App\ Layer/App.c ../App\ Layer/App.h \
 ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/..\..\MCAL\Dio\ Module\Dio.h:
 
 ../App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h:
+
+../App\ Layer/../Srvc\ Layer/Service_Cfg.h:

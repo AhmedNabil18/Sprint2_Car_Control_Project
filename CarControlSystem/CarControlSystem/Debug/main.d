@@ -22,7 +22,8 @@ main.d main.o: .././main.c .././App\ Layer/App.h \
  .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/Button.h \
  .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/Button_Cfg.h \
  .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/..\..\MCAL\Dio\ Module\Dio.h \
- .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h
+ .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h \
+ .././App\ Layer/../Srvc\ Layer/Service_Cfg.h
 
 .././App\ Layer/App.h:
 
@@ -73,3 +74,5 @@ main.d main.o: .././main.c .././App\ Layer/App.h \
 .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/..\..\MCAL\Dio\ Module\Dio.h:
 
 .././App\ Layer/../Srvc\ Layer/../ECUAL/Button\ Module/../../MCAL/Dio\ Module/Dio.h:
+
+.././App\ Layer/../Srvc\ Layer/Service_Cfg.h:

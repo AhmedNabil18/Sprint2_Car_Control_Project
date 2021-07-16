@@ -57,7 +57,8 @@ C_SRCS +=  \
 ../MCAL/Gpt\ Module/Gpt_Cfg.c \
 ../MCAL/SWPwm\ Module/SWPwm.c \
 ../MCAL/SWPwm\ Module/SWPwm_Cfg.c \
-../Srvc\ Layer/Service.c
+../Srvc\ Layer/Service.c \
+../Srvc\ Layer/Service_Cfg.c
 
 
 PREPROCESSING_SRCS += 
@@ -78,7 +79,8 @@ MCAL/Gpt\ Module/Gpt.o \
 MCAL/Gpt\ Module/Gpt_Cfg.o \
 MCAL/SWPwm\ Module/SWPwm.o \
 MCAL/SWPwm\ Module/SWPwm_Cfg.o \
-Srvc\ Layer/Service.o
+Srvc\ Layer/Service.o \
+Srvc\ Layer/Service_Cfg.o
 
 OBJS_AS_ARGS +=  \
 "App Layer/App.o" \
@@ -92,7 +94,8 @@ main.o \
 "MCAL/Gpt Module/Gpt_Cfg.o" \
 "MCAL/SWPwm Module/SWPwm.o" \
 "MCAL/SWPwm Module/SWPwm_Cfg.o" \
-"Srvc Layer/Service.o"
+"Srvc Layer/Service.o" \
+"Srvc Layer/Service_Cfg.o"
 
 C_DEPS +=  \
 App\ Layer/App.d \
@@ -106,7 +109,8 @@ MCAL/Gpt\ Module/Gpt.d \
 MCAL/Gpt\ Module/Gpt_Cfg.d \
 MCAL/SWPwm\ Module/SWPwm.d \
 MCAL/SWPwm\ Module/SWPwm_Cfg.d \
-Srvc\ Layer/Service.d
+Srvc\ Layer/Service.d \
+Srvc\ Layer/Service_Cfg.d
 
 C_DEPS_AS_ARGS +=  \
 "App Layer/App.d" \
@@ -120,7 +124,8 @@ main.d \
 "MCAL/Gpt Module/Gpt_Cfg.d" \
 "MCAL/SWPwm Module/SWPwm.d" \
 "MCAL/SWPwm Module/SWPwm_Cfg.d" \
-"Srvc Layer/Service.d"
+"Srvc Layer/Service.d" \
+"Srvc Layer/Service_Cfg.d"
 
 OUTPUT_FILE_PATH +=CarControlSystem.elf
 
@@ -214,6 +219,13 @@ MCAL/SWPwm\ Module/SWPwm_Cfg.o: ../MCAL/SWPwm\ Module/SWPwm_Cfg.c
 	
 
 Srvc\ Layer/Service.o: ../Srvc\ Layer/Service.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Srvc\ Layer/Service_Cfg.o: ../Srvc\ Layer/Service_Cfg.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

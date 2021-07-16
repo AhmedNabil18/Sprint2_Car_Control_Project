@@ -26,3 +26,5 @@ MCAL\SWPwm Module\SWPwm_Cfg.c
 
 Srvc Layer\Service.c
 
+Srvc Layer\Service_Cfg.c
+

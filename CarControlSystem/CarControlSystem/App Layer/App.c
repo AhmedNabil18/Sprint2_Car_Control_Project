@@ -84,7 +84,8 @@ enuApp_Status_t CarApp_update(void)
 {
 	/* Get Button Pressed */
 	Service_ReportButton(&gu8_buttonPressed);
-	
+	if(gu8_buttonPressed == BUTTON_NULL)
+		gu8_buttonPressed = CAR_BUTTONS_IDLE;
 	/* Fill the enuCurrentButton according to the button pressed */
 	switch (gu8_buttonPressed)
 	{
@@ -93,10 +94,7 @@ enuApp_Status_t CarApp_update(void)
 	case CAR_MOVE_HOLD:
 		/* Check if it's already Moving */
 		if(enuCurrentButton == CAR_MOVE_HOLD)
-		{
-			Dio_writePin(DIO_LED1_CHANNEL_ID,PIN_LOW);
 			break;
-		}
 		/* Fill the enuCurrentButton according to the button pressed */
 		enuCurrentButton = CAR_MOVE_HOLD;
 		/* Update the enuCurrentAction */
@@ -115,7 +113,6 @@ enuApp_Status_t CarApp_update(void)
 	/*******************************************************************************/
 	/*******************************************************************************/
 	case CAR_LEFT_HOLD:
-		Dio_writePin(DIO_LED1_CHANNEL_ID,PIN_HIGH);
 		/* Check if it's already Moving Left */
 		if(enuCurrentButton == CAR_LEFT_HOLD)
 			break;
@@ -155,6 +152,7 @@ enuApp_Status_t CarApp_update(void)
 			break;
 		/* Fill the enuCurrentButton according to the button pressed */
 		enuCurrentButton = CAR_GEAR_PRESSED;
+		Dio_togglePin(DIO_LED1_CHANNEL_ID);
 		/* Update flag indicate the hold state and ignore it */
 		
 		/* Update the enuCurrentGear */
@@ -167,7 +165,6 @@ enuApp_Status_t CarApp_update(void)
 	/*******************************************************************************/
 	/*******************************************************************************/
 	case CAR_BUTTONS_IDLE:
-		Dio_writePin(DIO_LED1_CHANNEL_ID,PIN_LOW);
 		/* Check if it's already Moving Right */
 		if(enuCurrentButton == CAR_BUTTONS_IDLE)
 			break;

@@ -1,5 +1,6 @@
-Srvc Layer/Service.d Srvc Layer/Service.o: ../Srvc\ Layer/Service.c \
- ../Srvc\ Layer/Service.h ../Srvc\ Layer/../ECUAL/Motor\ Module/Motor.h \
+Srvc Layer/Service_Cfg.d Srvc Layer/Service_Cfg.o: \
+ ../Srvc\ Layer/Service_Cfg.c ../Srvc\ Layer/Service.h \
+ ../Srvc\ Layer/../ECUAL/Motor\ Module/Motor.h \
  ../Srvc\ Layer/../ECUAL/Motor\ Module/Motor_Cfg.h \
  ../Srvc\ Layer/../ECUAL/Motor\ Module/../../MCAL/Dio\ Module/Dio.h \
  ../Srvc\ Layer/../ECUAL/Motor\ Module/../../MCAL/Dio\ Module/Dio_Cfg.h \

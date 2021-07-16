@@ -13,20 +13,10 @@
 /*-*-*-*-*- INCLUDES *-*-*-*-*-*/
 #include "../ECUAL/Motor Module/Motor.h"
 #include "../ECUAL/Button Module/Button.h"
+#include "Service_Cfg.h"
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*-*-*-*-*- CONSTANTS -*-*-*-*-*-*/
-#define BUTTON_NULL		0U
-#define BUTTON_M		1U
-#define BUTTON_L		2U
-#define BUTTON_R		3U
-#define BUTTON_G		4U
-
-#define MOTOR_RIGHT		MOTOR_RIGHT_ID
-#define MOTOR_LEFT		MOTOR_LEFT_ID
-
-#define MOTOR_FRWRD		MOTOR_DIR_CLK_WISE
-#define MOTOR_BKWRD		MOTOR_DIR_ANTI_CLK_WISE
 
 #define ACTION_STOP		0U
 #define ACTION_MOVE		1U
