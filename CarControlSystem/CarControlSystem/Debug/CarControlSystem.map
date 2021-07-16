@@ -51,6 +51,9 @@ Discarded input sections
  .text          0x00000000        0x0 ECUAL/Button Module/Button.o
  .data          0x00000000        0x0 ECUAL/Button Module/Button.o
  .bss           0x00000000        0x0 ECUAL/Button Module/Button.o
+ .text          0x00000000        0x0 ECUAL/Button Module/Button_Cfg.o
+ .data          0x00000000        0x0 ECUAL/Button Module/Button_Cfg.o
+ .bss           0x00000000        0x0 ECUAL/Button Module/Button_Cfg.o
  .text          0x00000000        0x0 ECUAL/Motor Module/Motor.o
  .data          0x00000000        0x0 ECUAL/Motor Module/Motor.o
  .bss           0x00000000        0x0 ECUAL/Motor Module/Motor.o
@@ -226,6 +229,7 @@ Linker script and memory map
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
 LOAD App Layer/App.o
 LOAD ECUAL/Button Module/Button.o
+LOAD ECUAL/Button Module/Button_Cfg.o
 LOAD ECUAL/Motor Module/Motor.o
 LOAD ECUAL/Motor Module/Motor_Cfg.o
 LOAD main.o
@@ -346,7 +350,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x16b6
+.text           0x00000000     0x16e4
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -426,158 +430,158 @@ END GROUP
                 0x000000a0       0x1e App Layer/App.o
                 0x000000a0                CarApp_init
  .text.CarApp_update
-                0x000000be       0xc4 App Layer/App.o
+                0x000000be       0xca App Layer/App.o
                 0x000000be                CarApp_update
  .text.CarApp_start
-                0x00000182       0x10 App Layer/App.o
-                0x00000182                CarApp_start
+                0x00000188       0x10 App Layer/App.o
+                0x00000188                CarApp_start
  .text.Button_init
-                0x00000192        0xc ECUAL/Button Module/Button.o
-                0x00000192                Button_init
+                0x00000198       0x22 ECUAL/Button Module/Button.o
+                0x00000198                Button_init
  .text.Button_getState
-                0x0000019e       0x24 ECUAL/Button Module/Button.o
-                0x0000019e                Button_getState
+                0x000001ba       0x24 ECUAL/Button Module/Button.o
+                0x000001ba                Button_getState
  .text.Button_updateState
-                0x000001c2       0xba ECUAL/Button Module/Button.o
-                0x000001c2                Button_updateState
+                0x000001de       0xcc ECUAL/Button Module/Button.o
+                0x000001de                Button_updateState
  .text.Motor_init
-                0x0000027c        0x8 ECUAL/Motor Module/Motor.o
-                0x0000027c                Motor_init
+                0x000002aa        0x8 ECUAL/Motor Module/Motor.o
+                0x000002aa                Motor_init
  .text.Motor_run
-                0x00000284       0xd6 ECUAL/Motor Module/Motor.o
-                0x00000284                Motor_run
+                0x000002b2       0xd6 ECUAL/Motor Module/Motor.o
+                0x000002b2                Motor_run
  .text.Motor_stop
-                0x0000035a       0xde ECUAL/Motor Module/Motor.o
-                0x0000035a                Motor_stop
- .text.main     0x00000438        0x6 main.o
-                0x00000438                main
+                0x00000388       0xde ECUAL/Motor Module/Motor.o
+                0x00000388                Motor_stop
+ .text.main     0x00000466        0x6 main.o
+                0x00000466                main
  .text.Dio_init
-                0x0000043e      0x1ea MCAL/Dio Module/Dio.o
-                0x0000043e                Dio_init
+                0x0000046c      0x1ea MCAL/Dio Module/Dio.o
+                0x0000046c                Dio_init
  .text.Dio_writePin
-                0x00000628      0x132 MCAL/Dio Module/Dio.o
-                0x00000628                Dio_writePin
+                0x00000656      0x132 MCAL/Dio Module/Dio.o
+                0x00000656                Dio_writePin
  .text.Dio_togglePin
-                0x0000075a       0xb0 MCAL/Dio Module/Dio.o
-                0x0000075a                Dio_togglePin
+                0x00000788       0xb0 MCAL/Dio Module/Dio.o
+                0x00000788                Dio_togglePin
  .text.Dio_readPin
-                0x0000080a      0x10a MCAL/Dio Module/Dio.o
-                0x0000080a                Dio_readPin
+                0x00000838      0x10a MCAL/Dio Module/Dio.o
+                0x00000838                Dio_readPin
  .text.Gpt_ISRHandler
-                0x00000914       0x96 MCAL/Gpt Module/Gpt.o
- .text.GptInit  0x000009aa       0x58 MCAL/Gpt Module/Gpt.o
-                0x000009aa                GptInit
+                0x00000942       0x96 MCAL/Gpt Module/Gpt.o
+ .text.GptInit  0x000009d8       0x58 MCAL/Gpt Module/Gpt.o
+                0x000009d8                GptInit
  .text.GptStart_aSync
-                0x00000a02       0xbe MCAL/Gpt Module/Gpt.o
-                0x00000a02                GptStart_aSync
- .text.GptStop  0x00000ac0       0x5a MCAL/Gpt Module/Gpt.o
-                0x00000ac0                GptStop
+                0x00000a30       0xbe MCAL/Gpt Module/Gpt.o
+                0x00000a30                GptStart_aSync
+ .text.GptStop  0x00000aee       0x5a MCAL/Gpt Module/Gpt.o
+                0x00000aee                GptStop
  .text.__vector_11
-                0x00000b1a       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000b1a                __vector_11
+                0x00000b48       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000b48                __vector_11
  .text.__vector_10
-                0x00000b64       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000b64                __vector_10
+                0x00000b92       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000b92                __vector_10
  .text.__vector_9
-                0x00000bae       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000bae                __vector_9
+                0x00000bdc       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000bdc                __vector_9
  .text.__vector_6
-                0x00000bf8       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000bf8                __vector_6
+                0x00000c26       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000c26                __vector_6
  .text.__vector_7
-                0x00000c42       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000c42                __vector_7
+                0x00000c70       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000c70                __vector_7
  .text.__vector_8
-                0x00000c8c       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000c8c                __vector_8
+                0x00000cba       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000cba                __vector_8
  .text.__vector_4
-                0x00000cd6       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000cd6                __vector_4
+                0x00000d04       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000d04                __vector_4
  .text.__vector_5
-                0x00000d20       0x4a MCAL/Gpt Module/Gpt.o
-                0x00000d20                __vector_5
+                0x00000d4e       0x4a MCAL/Gpt Module/Gpt.o
+                0x00000d4e                __vector_5
  .text.waveFunction
-                0x00000d6a      0x104 MCAL/SWPwm Module/SWPwm.o
-                0x00000d6a                waveFunction
+                0x00000d98      0x104 MCAL/SWPwm Module/SWPwm.o
+                0x00000d98                waveFunction
  .text.SWPwm_Init
-                0x00000e6e       0x10 MCAL/SWPwm Module/SWPwm.o
-                0x00000e6e                SWPwm_Init
+                0x00000e9c       0x10 MCAL/SWPwm Module/SWPwm.o
+                0x00000e9c                SWPwm_Init
  .text.SWPwm_Start
-                0x00000e7e      0x220 MCAL/SWPwm Module/SWPwm.o
-                0x00000e7e                SWPwm_Start
+                0x00000eac      0x220 MCAL/SWPwm Module/SWPwm.o
+                0x00000eac                SWPwm_Start
  .text.SWPwm_Stop
-                0x0000109e       0x7c MCAL/SWPwm Module/SWPwm.o
-                0x0000109e                SWPwm_Stop
+                0x000010cc       0x7c MCAL/SWPwm Module/SWPwm.o
+                0x000010cc                SWPwm_Stop
  .text.Service_init
-                0x0000111a       0x2a Srvc Layer/Service.o
-                0x0000111a                Service_init
+                0x00001148       0x2a Srvc Layer/Service.o
+                0x00001148                Service_init
  .text.Service_ReportButton
-                0x00001144       0x76 Srvc Layer/Service.o
-                0x00001144                Service_ReportButton
+                0x00001172       0x76 Srvc Layer/Service.o
+                0x00001172                Service_ReportButton
  .text.Service_UpdateMotors
-                0x000011ba       0x96 Srvc Layer/Service.o
-                0x000011ba                Service_UpdateMotors
+                0x000011e8       0x96 Srvc Layer/Service.o
+                0x000011e8                Service_UpdateMotors
  .text.avr-libc.fplib
-                0x00001250        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x00001250                __subsf3
-                0x00001252                __addsf3
+                0x0000127e        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x0000127e                __subsf3
+                0x00001280                __addsf3
  .text.avr-libc.fplib
-                0x0000125e       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x00001280                __addsf3x
+                0x0000128c       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x000012ae                __addsf3x
  .text.avr-libc.fplib
-                0x0000132a        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x0000132a                __divsf3
+                0x00001358        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x00001358                __divsf3
  .text.avr-libc.fplib
-                0x00001332       0xdc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x00001352                __divsf3x
-                0x00001358                __divsf3_pse
+                0x00001360       0xdc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x00001380                __divsf3x
+                0x00001386                __divsf3_pse
  .text.avr-libc.fplib
-                0x0000140e       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x0000140e                __fixunssfsi
+                0x0000143c       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x0000143c                __fixunssfsi
  .text.avr-libc.fplib
-                0x0000146c       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x0000146c                __floatunsisf
-                0x00001470                __floatsisf
+                0x0000149a       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x0000149a                __floatunsisf
+                0x0000149e                __floatsisf
  .text.avr-libc.fplib
-                0x000014e6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x000014e6                __fp_inf
+                0x00001514        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00001514                __fp_inf
  .text.avr-libc.fplib
-                0x000014f2        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x000014f2                __fp_nan
+                0x00001520        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00001520                __fp_nan
  .text.avr-libc.fplib
-                0x000014f8        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x000014f8                __fp_pscA
+                0x00001526        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00001526                __fp_pscA
  .text.avr-libc.fplib
-                0x00001506        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00001506                __fp_pscB
+                0x00001534        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00001534                __fp_pscB
  .text.avr-libc.fplib
-                0x00001514       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x00001514                __fp_round
+                0x00001542       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00001542                __fp_round
  .text.avr-libc.fplib
-                0x00001536       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00001536                __fp_split3
-                0x00001546                __fp_splitA
+                0x00001564       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00001564                __fp_split3
+                0x00001574                __fp_splitA
  .text.avr-libc.fplib
-                0x0000157a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x0000157a                __fp_zero
-                0x0000157c                __fp_szero
+                0x000015a8        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x000015a8                __fp_zero
+                0x000015aa                __fp_szero
  .text.avr-libc.fplib
-                0x00001588        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x00001588                __mulsf3
+                0x000015b6        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x000015b6                __mulsf3
  .text.avr-libc.fplib
-                0x00001590       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x000015ae                __mulsf3x
-                0x000015b4                __mulsf3_pse
+                0x000015be       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x000015dc                __mulsf3x
+                0x000015e2                __mulsf3_pse
  .text.libgcc.div
-                0x00001662       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001662                __udivmodsi4
- .text.libgcc   0x000016a6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000016a6                __tablejump2__
-                0x000016b2                . = ALIGN (0x2)
+                0x00001690       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001690                __udivmodsi4
+ .text.libgcc   0x000016d4        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000016d4                __tablejump2__
+                0x000016e0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000016b2        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000016b2                _exit
-                0x000016b2                exit
+ .fini9         0x000016e0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000016e0                _exit
+                0x000016e0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -596,87 +600,92 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000016b2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000016e0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000016b6                _etext = .
+                0x000016e4                _etext = .
 
-.data           0x00800060       0x3e load address 0x000016b6
+.data           0x00800060       0x44 load address 0x000016e4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.enuCurrentAppStatus
+ .data.enuCurrentButton
                 0x00800060        0x1 App Layer/App.o
+ .data.enuCurrentAppStatus
+                0x00800061        0x1 App Layer/App.o
+ .data.genu_BttnModuleState
+                0x00800062        0x1 ECUAL/Button Module/Button.o
+ .data.gau8_buttonsUsed
+                0x00800063        0x4 ECUAL/Button Module/Button_Cfg.o
+                0x00800063                gau8_buttonsUsed
  .data.strDio_pins
-                0x00800061       0x28 MCAL/Dio Module/Dio_Cfg.o
-                0x00800061                strDio_pins
+                0x00800067       0x28 MCAL/Dio Module/Dio_Cfg.o
+                0x00800067                strDio_pins
  .data.genu_SrvcStatus
-                0x00800089        0x1 Srvc Layer/Service.o
-                0x00800089                genu_SrvcStatus
+                0x0080008f        0x1 Srvc Layer/Service.o
+                0x0080008f                genu_SrvcStatus
  .data.gau8_buttons
-                0x0080008a        0x4 Srvc Layer/Service_Cfg.o
-                0x0080008a                gau8_buttons
+                0x00800090        0x4 Srvc Layer/Service_Cfg.o
+                0x00800090                gau8_buttons
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str_MotorsConfig
-                0x0080008e        0xa ECUAL/Motor Module/Motor_Cfg.o
-                0x0080008e                str_MotorsConfig
+                0x00800094        0xa ECUAL/Motor Module/Motor_Cfg.o
+                0x00800094                str_MotorsConfig
  .rodata.Timers_Configurations
-                0x00800098        0x3 MCAL/Gpt Module/Gpt_Cfg.o
-                0x00800098                Timers_Configurations
+                0x0080009e        0x3 MCAL/Gpt Module/Gpt_Cfg.o
+                0x0080009e                Timers_Configurations
  .rodata.SWPwm_Channels
-                0x0080009b        0x2 MCAL/SWPwm Module/SWPwm_Cfg.o
-                0x0080009b                SWPwm_Channels
+                0x008000a1        0x2 MCAL/SWPwm Module/SWPwm_Cfg.o
+                0x008000a1                SWPwm_Channels
  *(.gnu.linkonce.r*)
-                0x0080009e                . = ALIGN (0x2)
- *fill*         0x0080009d        0x1 
-                0x0080009e                _edata = .
-                0x0080009e                PROVIDE (__data_end, .)
+                0x008000a4                . = ALIGN (0x2)
+ *fill*         0x008000a3        0x1 
+                0x008000a4                _edata = .
+                0x008000a4                PROVIDE (__data_end, .)
 
-.bss            0x0080009e       0x22
-                0x0080009e                PROVIDE (__bss_start, .)
+.bss            0x008000a4       0x21
+                0x008000a4                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.gu8_buttonPressed
-                0x0080009e        0x1 App Layer/App.o
-                0x0080009e                gu8_buttonPressed
- .bss.enuCurrentButton
-                0x0080009f        0x1 App Layer/App.o
+                0x008000a4        0x1 App Layer/App.o
+                0x008000a4                gu8_buttonPressed
  .bss.enuCurrentGear
-                0x008000a0        0x1 App Layer/App.o
+                0x008000a5        0x1 App Layer/App.o
  .bss.gu8_ButtonsState
-                0x008000a1        0x4 ECUAL/Button Module/Button.o
+                0x008000a6        0x4 ECUAL/Button Module/Button.o
  .bss.gau8_MotorsState
-                0x008000a5        0x2 ECUAL/Motor Module/Motor.o
-                0x008000a5                gau8_MotorsState
+                0x008000aa        0x2 ECUAL/Motor Module/Motor.o
+                0x008000aa                gau8_MotorsState
  .bss.u8_Dio_Status
-                0x008000a7        0x1 MCAL/Dio Module/Dio.o
+                0x008000ac        0x1 MCAL/Dio Module/Dio.o
  .bss.pstrDio_pinsConfig
-                0x008000a8        0x2 MCAL/Dio Module/Dio.o
+                0x008000ad        0x2 MCAL/Dio Module/Dio.o
  .bss.u32_Channels_ISR_Count
-                0x008000aa        0x4 MCAL/Gpt Module/Gpt.o
-                0x008000aa                u32_Channels_ISR_Count
+                0x008000af        0x4 MCAL/Gpt Module/Gpt.o
+                0x008000af                u32_Channels_ISR_Count
  .bss.enuChannelsState
-                0x008000ae        0x1 MCAL/Gpt Module/Gpt.o
-                0x008000ae                enuChannelsState
+                0x008000b3        0x1 MCAL/Gpt Module/Gpt.o
+                0x008000b3                enuChannelsState
  .bss.Gpt_Timer0_CallBackPtr
-                0x008000af        0x2 MCAL/Gpt Module/Gpt.o
+                0x008000b4        0x2 MCAL/Gpt Module/Gpt.o
  .bss.gu8_currentPwmChannel
-                0x008000b1        0x1 MCAL/SWPwm Module/SWPwm.o
-                0x008000b1                gu8_currentPwmChannel
+                0x008000b6        0x1 MCAL/SWPwm Module/SWPwm.o
+                0x008000b6                gu8_currentPwmChannel
  .bss.gstr_ChannelsData
-                0x008000b2        0xe MCAL/SWPwm Module/SWPwm.o
-                0x008000b2                gstr_ChannelsData
+                0x008000b7        0xe MCAL/SWPwm Module/SWPwm.o
+                0x008000b7                gstr_ChannelsData
  *(COMMON)
-                0x008000c0                PROVIDE (__bss_end, .)
-                0x000016b6                __data_load_start = LOADADDR (.data)
-                0x000016f4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008000c5                PROVIDE (__bss_end, .)
+                0x000016e4                __data_load_start = LOADADDR (.data)
+                0x00001728                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000c0        0x0
+.noinit         0x008000c5        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000c0                _end = .
+                0x008000c5                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -721,6 +730,7 @@ END GROUP
  .comment       0x00000000       0x30 App Layer/App.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 ECUAL/Button Module/Button.o
+ .comment       0x00000030       0x31 ECUAL/Button Module/Button_Cfg.o
  .comment       0x00000030       0x31 ECUAL/Motor Module/Motor.o
  .comment       0x00000030       0x31 ECUAL/Motor Module/Motor_Cfg.o
  .comment       0x00000030       0x31 main.o
@@ -753,138 +763,145 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x248
+.debug_aranges  0x00000000      0x260
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 App Layer/App.o
  .debug_aranges
                 0x00000030       0x30 ECUAL/Button Module/Button.o
  .debug_aranges
-                0x00000060       0x30 ECUAL/Motor Module/Motor.o
+                0x00000060       0x18 ECUAL/Button Module/Button_Cfg.o
  .debug_aranges
-                0x00000090       0x18 ECUAL/Motor Module/Motor_Cfg.o
+                0x00000078       0x30 ECUAL/Motor Module/Motor.o
  .debug_aranges
-                0x000000a8       0x20 main.o
+                0x000000a8       0x18 ECUAL/Motor Module/Motor_Cfg.o
  .debug_aranges
-                0x000000c8       0x38 MCAL/Dio Module/Dio.o
+                0x000000c0       0x20 main.o
  .debug_aranges
-                0x00000100       0x18 MCAL/Dio Module/Dio_Cfg.o
+                0x000000e0       0x38 MCAL/Dio Module/Dio.o
  .debug_aranges
-                0x00000118       0x80 MCAL/Gpt Module/Gpt.o
+                0x00000118       0x18 MCAL/Dio Module/Dio_Cfg.o
  .debug_aranges
-                0x00000198       0x18 MCAL/Gpt Module/Gpt_Cfg.o
+                0x00000130       0x80 MCAL/Gpt Module/Gpt.o
  .debug_aranges
-                0x000001b0       0x38 MCAL/SWPwm Module/SWPwm.o
+                0x000001b0       0x18 MCAL/Gpt Module/Gpt_Cfg.o
  .debug_aranges
-                0x000001e8       0x18 MCAL/SWPwm Module/SWPwm_Cfg.o
+                0x000001c8       0x38 MCAL/SWPwm Module/SWPwm.o
  .debug_aranges
-                0x00000200       0x30 Srvc Layer/Service.o
+                0x00000200       0x18 MCAL/SWPwm Module/SWPwm_Cfg.o
  .debug_aranges
-                0x00000230       0x18 Srvc Layer/Service_Cfg.o
+                0x00000218       0x30 Srvc Layer/Service.o
+ .debug_aranges
+                0x00000248       0x18 Srvc Layer/Service_Cfg.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2326
+.debug_info     0x00000000     0x243b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x302 App Layer/App.o
- .debug_info    0x000007e8      0x2a2 ECUAL/Button Module/Button.o
- .debug_info    0x00000a8a      0x31e ECUAL/Motor Module/Motor.o
- .debug_info    0x00000da8       0xf9 ECUAL/Motor Module/Motor_Cfg.o
- .debug_info    0x00000ea1       0xad main.o
- .debug_info    0x00000f4e      0x247 MCAL/Dio Module/Dio.o
- .debug_info    0x00001195      0x108 MCAL/Dio Module/Dio_Cfg.o
- .debug_info    0x0000129d      0x535 MCAL/Gpt Module/Gpt.o
- .debug_info    0x000017d2      0x169 MCAL/Gpt Module/Gpt_Cfg.o
- .debug_info    0x0000193b      0x567 MCAL/SWPwm Module/SWPwm.o
- .debug_info    0x00001ea2       0xd2 MCAL/SWPwm Module/SWPwm_Cfg.o
- .debug_info    0x00001f74      0x31a Srvc Layer/Service.o
- .debug_info    0x0000228e       0x98 Srvc Layer/Service_Cfg.o
+ .debug_info    0x000007e8      0x30d ECUAL/Button Module/Button.o
+ .debug_info    0x00000af5       0x98 ECUAL/Button Module/Button_Cfg.o
+ .debug_info    0x00000b8d      0x31e ECUAL/Motor Module/Motor.o
+ .debug_info    0x00000eab       0xf9 ECUAL/Motor Module/Motor_Cfg.o
+ .debug_info    0x00000fa4       0xad main.o
+ .debug_info    0x00001051      0x247 MCAL/Dio Module/Dio.o
+ .debug_info    0x00001298      0x108 MCAL/Dio Module/Dio_Cfg.o
+ .debug_info    0x000013a0      0x535 MCAL/Gpt Module/Gpt.o
+ .debug_info    0x000018d5      0x169 MCAL/Gpt Module/Gpt_Cfg.o
+ .debug_info    0x00001a3e      0x567 MCAL/SWPwm Module/SWPwm.o
+ .debug_info    0x00001fa5       0xd2 MCAL/SWPwm Module/SWPwm_Cfg.o
+ .debug_info    0x00002077      0x32c Srvc Layer/Service.o
+ .debug_info    0x000023a3       0x98 Srvc Layer/Service_Cfg.o
 
-.debug_abbrev   0x00000000      0xf97
+.debug_abbrev   0x00000000      0xfe2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_abbrev  0x000004a3       0xef App Layer/App.o
  .debug_abbrev  0x00000592      0x143 ECUAL/Button Module/Button.o
- .debug_abbrev  0x000006d5      0x134 ECUAL/Motor Module/Motor.o
- .debug_abbrev  0x00000809       0x6e ECUAL/Motor Module/Motor_Cfg.o
- .debug_abbrev  0x00000877       0x68 main.o
- .debug_abbrev  0x000008df       0xc3 MCAL/Dio Module/Dio.o
- .debug_abbrev  0x000009a2       0x7f MCAL/Dio Module/Dio_Cfg.o
- .debug_abbrev  0x00000a21      0x1a4 MCAL/Gpt Module/Gpt.o
- .debug_abbrev  0x00000bc5       0x86 MCAL/Gpt Module/Gpt_Cfg.o
- .debug_abbrev  0x00000c4b      0x16a MCAL/SWPwm Module/SWPwm.o
- .debug_abbrev  0x00000db5       0x6e MCAL/SWPwm Module/SWPwm_Cfg.o
- .debug_abbrev  0x00000e23      0x129 Srvc Layer/Service.o
- .debug_abbrev  0x00000f4c       0x4b Srvc Layer/Service_Cfg.o
+ .debug_abbrev  0x000006d5       0x4b ECUAL/Button Module/Button_Cfg.o
+ .debug_abbrev  0x00000720      0x134 ECUAL/Motor Module/Motor.o
+ .debug_abbrev  0x00000854       0x6e ECUAL/Motor Module/Motor_Cfg.o
+ .debug_abbrev  0x000008c2       0x68 main.o
+ .debug_abbrev  0x0000092a       0xc3 MCAL/Dio Module/Dio.o
+ .debug_abbrev  0x000009ed       0x7f MCAL/Dio Module/Dio_Cfg.o
+ .debug_abbrev  0x00000a6c      0x1a4 MCAL/Gpt Module/Gpt.o
+ .debug_abbrev  0x00000c10       0x86 MCAL/Gpt Module/Gpt_Cfg.o
+ .debug_abbrev  0x00000c96      0x16a MCAL/SWPwm Module/SWPwm.o
+ .debug_abbrev  0x00000e00       0x6e MCAL/SWPwm Module/SWPwm_Cfg.o
+ .debug_abbrev  0x00000e6e      0x129 Srvc Layer/Service.o
+ .debug_abbrev  0x00000f97       0x4b Srvc Layer/Service_Cfg.o
 
-.debug_line     0x00000000     0x1535
+.debug_line     0x00000000     0x15d3
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000116      0x21c App Layer/App.o
- .debug_line    0x00000332      0x1b6 ECUAL/Button Module/Button.o
- .debug_line    0x000004e8      0x20b ECUAL/Motor Module/Motor.o
- .debug_line    0x000006f3       0x8d ECUAL/Motor Module/Motor_Cfg.o
- .debug_line    0x00000780       0x57 main.o
- .debug_line    0x000007d7      0x302 MCAL/Dio Module/Dio.o
- .debug_line    0x00000ad9       0x6d MCAL/Dio Module/Dio_Cfg.o
- .debug_line    0x00000b46      0x38a MCAL/Gpt Module/Gpt.o
- .debug_line    0x00000ed0       0x6d MCAL/Gpt Module/Gpt_Cfg.o
- .debug_line    0x00000f3d      0x250 MCAL/SWPwm Module/SWPwm.o
- .debug_line    0x0000118d       0x75 MCAL/SWPwm Module/SWPwm_Cfg.o
- .debug_line    0x00001202      0x2a9 Srvc Layer/Service.o
- .debug_line    0x000014ab       0x8a Srvc Layer/Service_Cfg.o
+ .debug_line    0x00000332      0x1cf ECUAL/Button Module/Button.o
+ .debug_line    0x00000501       0x85 ECUAL/Button Module/Button_Cfg.o
+ .debug_line    0x00000586      0x20b ECUAL/Motor Module/Motor.o
+ .debug_line    0x00000791       0x8d ECUAL/Motor Module/Motor_Cfg.o
+ .debug_line    0x0000081e       0x57 main.o
+ .debug_line    0x00000875      0x302 MCAL/Dio Module/Dio.o
+ .debug_line    0x00000b77       0x6d MCAL/Dio Module/Dio_Cfg.o
+ .debug_line    0x00000be4      0x38a MCAL/Gpt Module/Gpt.o
+ .debug_line    0x00000f6e       0x6d MCAL/Gpt Module/Gpt_Cfg.o
+ .debug_line    0x00000fdb      0x250 MCAL/SWPwm Module/SWPwm.o
+ .debug_line    0x0000122b       0x75 MCAL/SWPwm Module/SWPwm_Cfg.o
+ .debug_line    0x000012a0      0x2a9 Srvc Layer/Service.o
+ .debug_line    0x00001549       0x8a Srvc Layer/Service_Cfg.o
 
-.debug_frame    0x00000000      0x61c
+.debug_frame    0x00000000      0x620
  *(.debug_frame)
  .debug_frame   0x00000000       0x44 App Layer/App.o
- .debug_frame   0x00000044       0x5c ECUAL/Button Module/Button.o
- .debug_frame   0x000000a0       0x7c ECUAL/Motor Module/Motor.o
- .debug_frame   0x0000011c       0x24 main.o
- .debug_frame   0x00000140       0x54 MCAL/Dio Module/Dio.o
- .debug_frame   0x00000194      0x344 MCAL/Gpt Module/Gpt.o
- .debug_frame   0x000004d8       0xc0 MCAL/SWPwm Module/SWPwm.o
- .debug_frame   0x00000598       0x84 Srvc Layer/Service.o
+ .debug_frame   0x00000044       0x60 ECUAL/Button Module/Button.o
+ .debug_frame   0x000000a4       0x7c ECUAL/Motor Module/Motor.o
+ .debug_frame   0x00000120       0x24 main.o
+ .debug_frame   0x00000144       0x54 MCAL/Dio Module/Dio.o
+ .debug_frame   0x00000198      0x344 MCAL/Gpt Module/Gpt.o
+ .debug_frame   0x000004dc       0xc0 MCAL/SWPwm Module/SWPwm.o
+ .debug_frame   0x0000059c       0x84 Srvc Layer/Service.o
 
-.debug_str      0x00000000     0x12ea
+.debug_str      0x00000000     0x1371
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x472 App Layer/App.o
                                 0x499 (size before relaxing)
- .debug_str     0x00000608      0x1ae ECUAL/Button Module/Button.o
-                                0x351 (size before relaxing)
- .debug_str     0x000007b6      0x1df ECUAL/Motor Module/Motor.o
+ .debug_str     0x00000608      0x2d0 ECUAL/Button Module/Button.o
+                                0x473 (size before relaxing)
+ .debug_str     0x000008d8       0x24 ECUAL/Button Module/Button_Cfg.o
+                                0x1d5 (size before relaxing)
+ .debug_str     0x000008fc      0x1df ECUAL/Motor Module/Motor.o
                                 0x37f (size before relaxing)
- .debug_str     0x00000995       0x22 ECUAL/Motor Module/Motor_Cfg.o
+ .debug_str     0x00000adb       0x22 ECUAL/Motor Module/Motor_Cfg.o
                                 0x22f (size before relaxing)
- .debug_str     0x000009b7       0x11 main.o
+ .debug_str     0x00000afd       0x11 main.o
                                 0x1ad (size before relaxing)
- .debug_str     0x000009c8      0x12c MCAL/Dio Module/Dio.o
+ .debug_str     0x00000b0e       0x6d MCAL/Dio Module/Dio.o
                                 0x383 (size before relaxing)
- .debug_str     0x00000af4       0x1d MCAL/Dio Module/Dio_Cfg.o
+ .debug_str     0x00000b7b       0x1d MCAL/Dio Module/Dio_Cfg.o
                                 0x240 (size before relaxing)
- .debug_str     0x00000b11      0x44d MCAL/Gpt Module/Gpt.o
+ .debug_str     0x00000b98      0x44d MCAL/Gpt Module/Gpt.o
                                 0x60c (size before relaxing)
- .debug_str     0x00000f5e       0x1d MCAL/Gpt Module/Gpt_Cfg.o
+ .debug_str     0x00000fe5       0x1d MCAL/Gpt Module/Gpt_Cfg.o
                                 0x366 (size before relaxing)
- .debug_str     0x00000f7b      0x280 MCAL/SWPwm Module/SWPwm.o
+ .debug_str     0x00001002      0x280 MCAL/SWPwm Module/SWPwm.o
                                 0x6c3 (size before relaxing)
- .debug_str     0x000011fb       0x21 MCAL/SWPwm Module/SWPwm_Cfg.o
+ .debug_str     0x00001282       0x21 MCAL/SWPwm Module/SWPwm_Cfg.o
                                 0x209 (size before relaxing)
- .debug_str     0x0000121c       0xb2 Srvc Layer/Service.o
-                                0x482 (size before relaxing)
- .debug_str     0x000012ce       0x1c Srvc Layer/Service_Cfg.o
+ .debug_str     0x000012a3       0xb2 Srvc Layer/Service.o
+                                0x4bf (size before relaxing)
+ .debug_str     0x00001355       0x1c Srvc Layer/Service_Cfg.o
                                 0x1c9 (size before relaxing)
 
-.debug_loc      0x00000000     0x1689
+.debug_loc      0x00000000     0x1696
  *(.debug_loc)
- .debug_loc     0x00000000      0x188 ECUAL/Button Module/Button.o
- .debug_loc     0x00000188      0x227 ECUAL/Motor Module/Motor.o
- .debug_loc     0x000003af      0x178 MCAL/Dio Module/Dio.o
- .debug_loc     0x00000527      0x97d MCAL/Gpt Module/Gpt.o
- .debug_loc     0x00000ea4      0x4d3 MCAL/SWPwm Module/SWPwm.o
- .debug_loc     0x00001377      0x312 Srvc Layer/Service.o
+ .debug_loc     0x00000000      0x195 ECUAL/Button Module/Button.o
+ .debug_loc     0x00000195      0x227 ECUAL/Motor Module/Motor.o
+ .debug_loc     0x000003bc      0x178 MCAL/Dio Module/Dio.o
+ .debug_loc     0x00000534      0x97d MCAL/Gpt Module/Gpt.o
+ .debug_loc     0x00000eb1      0x4d3 MCAL/SWPwm Module/SWPwm.o
+ .debug_loc     0x00001384      0x312 Srvc Layer/Service.o
 
 .debug_macinfo
  *(.debug_macinfo)

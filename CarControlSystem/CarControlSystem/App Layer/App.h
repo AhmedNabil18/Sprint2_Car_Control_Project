@@ -61,11 +61,11 @@ typedef enum
  */
 typedef enum
 {
-	CAR_BUTTONS_IDLE=0,
 	CAR_MOVE_HOLD,
 	CAR_LEFT_HOLD,
 	CAR_RIGHT_HOLD,
-	CAR_GEAR_PRESSED
+	CAR_GEAR_PRESSED,
+	CAR_BUTTONS_IDLE
 }enuCarButton_t;
 /*******************************************************************************
  *                      Function Prototypes                                    *

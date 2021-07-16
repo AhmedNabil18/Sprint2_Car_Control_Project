@@ -6,6 +6,8 @@ App Layer\App.c
 
 ECUAL\Button Module\Button.c
 
+ECUAL\Button Module\Button_Cfg.c
+
 ECUAL\Motor Module\Motor.c
 
 ECUAL\Motor Module\Motor_Cfg.c

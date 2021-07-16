@@ -9,8 +9,11 @@
 #ifndef ATMEGA32_INTERRUPTS_H_
 #define ATMEGA32_INTERRUPTS_H_
 
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+/*-*-*-*-*- INCLUDES *-*-*-*-*-*/
 #include "ATMega32_Registers.h"
 
+/* Connected ISRs with the IVT */
 #define INT0_IRQ				__vector_1
 #define INT1_IRQ				__vector_2
 #define INT2_IRQ				__vector_3
@@ -32,12 +35,13 @@
 #define TWI_IRQ					__vector_19
 #define SPM_RDY_IRQ				__vector_20
 
-
+/* Function Like Macro for the ISR */
 #  define ISR(vector, ...)            \
 void vector (void) __attribute__ ((signal,used)) __VA_ARGS__; \
 void vector (void)
 
 
+/* Function like macros to enable and disable the global interrupt */
 #define EnableGlbl_Interrupt()		REG_SET_BIT(SREG_REG, SREG_I_BIT)
 #define DisableGlbl_Interrupt()		REG_CLR_BIT(SREG_REG, SREG_I_BIT)
 

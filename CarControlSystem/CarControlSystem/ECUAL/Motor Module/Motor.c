@@ -5,8 +5,6 @@
  *  Author: Ahmed Nabil
  */ 
 
-
-
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*-*-*-*-*- INCLUDES *-*-*-*-*-*/
 #include "Motor.h"
@@ -137,9 +135,9 @@ enuMotor_Status_t Motor_run(uint8_t u8_motorID, uint8_t u8_speed, uint8_t u8_dir
 /* Function to stop motor */
 enuMotor_Status_t Motor_stop(uint8_t u8_motorID)
 {
-	/**************************************************************************************/
-	/*								Start of Error Checking								  */
-	/**************************************************************************************/
+/**************************************************************************************/
+/*								Start of Error Checking								  */
+/**************************************************************************************/
 	/* Check if the motor index is invalid */
 	if (MOTORS_USED_NUM <= u8_motorID)
 	{

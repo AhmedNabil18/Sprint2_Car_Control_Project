@@ -13,9 +13,9 @@
 
 #define BUTTONS_USED_NUM		4U
 
-#define BUTTON_1_M		DIO_BUTTON1_PD0_CHANNEL_ID		
-#define BUTTON_2_L		DIO_BUTTON2_PD1_CHANNEL_ID		
-#define BUTTON_3_R		DIO_BUTTON3_PD2_CHANNEL_ID		
-#define BUTTON_4_G		DIO_BUTTON4_PD3_CHANNEL_ID		
+#define BUTTON_1_M		0		
+#define BUTTON_2_L		1		
+#define BUTTON_3_R		2		
+#define BUTTON_4_G		3		
 	
 #endif /* BUTTON_CFG_H_ */

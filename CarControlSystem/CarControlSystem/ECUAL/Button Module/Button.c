@@ -12,8 +12,8 @@
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*-*-*-*-*- GLOBAL STATIC VARIABLES *-*-*-*-*-*/
 static u8_ButtonState_t gu8_ButtonsState[BUTTONS_USED_NUM] = {BUTTON_STATE_RELEASED};
-
-
+static enuBttn_Status_t genu_BttnModuleState = BTTN_STATUS_NOT_INIT;
+extern uint8_t gau8_buttonsUsed[BUTTONS_USED_NUM];
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 /*--*-*-*- FUNCTIONS IMPLEMENTATION -*-*-*-*-*-*/
 
@@ -29,7 +29,31 @@ static u8_ButtonState_t gu8_ButtonsState[BUTTONS_USED_NUM] = {BUTTON_STATE_RELEA
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 enuBttn_Status_t Button_init(void)
 {
-	Dio_init(strDio_pins);
+/**************************************************************************************/
+/*								Start of Error Checking								  */
+/**************************************************************************************/
+	/* Check if the button module is already initialized */
+	if (genu_BttnModuleState == BTTN_STATUS_INIT)
+	{
+		return BTTN_STATUS_INIT;
+	}else{/*Nothing to here*/}
+	
+	/* Check if there are no DIO Pins configured */
+	if(DIO_USED_PINS_NUM == 0)
+	{
+		return BTTN_ERROR_DIO_INVALID;
+	}
+		
+/**************************************************************************************/
+/*								End of Error Checking								  */
+/**************************************************************************************/
+
+/**************************************************************************************/
+/*								Function Implementation								  */
+/**************************************************************************************/
+	if(DIO_STATUS_ERROR_OK != Dio_init(strDio_pins))
+		return BTTN_STATUS_ERROR_NOK;
+	genu_BttnModuleState = BTTN_STATUS_INIT;
 	return BTTN_STATUS_ERROR_OK;
 }
 
@@ -49,10 +73,10 @@ enuBttn_Status_t Button_getState(uint8_t u8_bttnID, u8_ButtonState_t * pu8_state
 /*								Start of Error Checking								  */
 /**************************************************************************************/
 	/* Check if the button index is invalid */
-	if ((BUTTONS_USED_NUM+BUTTON_1_M) <= u8_bttnID)
+	if (BUTTONS_USED_NUM < u8_bttnID)
 	{
 		return BTTN_STATUS_ERROR_ID_INVALID;
-		}else{/*Nothing to here*/}
+	}else{/*Nothing to here*/}
 		
 	/* Check if the input parameter is NULL */
 	if (NULL_PTR == pu8_state)
@@ -87,11 +111,9 @@ enuBttn_Status_t Button_updateState(uint8_t u8_bttnID)
 /*								Start of Error Checking								  */
 /**************************************************************************************/
 	/* Check if the button index is invalid */
-	if ((BUTTONS_USED_NUM+BUTTON_1_M) <= u8_bttnID)
-	{
+	if(u8_bttnID > BUTTONS_USED_NUM)
 		return BTTN_STATUS_ERROR_ID_INVALID;
-	}else{/*Nothing to here*/}
-		
+	else{/*Nothing to here*/}
 /**************************************************************************************/
 /*								End of Error Checking								  */
 /**************************************************************************************/
@@ -101,15 +123,14 @@ enuBttn_Status_t Button_updateState(uint8_t u8_bttnID)
 /**************************************************************************************/
 	uint8_t u8_valueTemp=0;
 	uint32_t u32_loopIndex = 0;
-	
 	/* Read the Pin and put its state in the global variable */
-	Dio_readPin(u8_bttnID,&u8_valueTemp);
+	Dio_readPin(gau8_buttonsUsed[u8_bttnID], &u8_valueTemp);
 	if(u8_valueTemp == PIN_HIGH)
 	{
 		/* De bouncing Delay */
 		for(u32_loopIndex=0; u32_loopIndex<3000; u32_loopIndex++);
 		/* De bouncing Check */
-		Dio_readPin(u8_bttnID,&u8_valueTemp);
+		Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp);
 		if(u8_valueTemp == PIN_HIGH)
 			gu8_ButtonsState[u8_bttnID] = BUTTON_STATE_PRESSED;
 	}else if (u8_valueTemp == PIN_LOW)
@@ -117,7 +138,7 @@ enuBttn_Status_t Button_updateState(uint8_t u8_bttnID)
 		/* De bouncing Delay */
 		for(u32_loopIndex=0; u32_loopIndex<3000; u32_loopIndex++);
 		/* De bouncing Check */
-		Dio_readPin(u8_bttnID,&u8_valueTemp);
+		Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp);
 		if(u8_valueTemp == PIN_LOW)
 			gu8_ButtonsState[u8_bttnID] = BUTTON_STATE_RELEASED;
 	}

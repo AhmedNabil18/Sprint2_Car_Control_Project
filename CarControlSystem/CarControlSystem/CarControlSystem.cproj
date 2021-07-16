@@ -132,6 +132,9 @@
     <Compile Include="ECUAL\Button Module\Button.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ECUAL\Button Module\Button_Cfg.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ECUAL\Button Module\Button_Cfg.h">
       <SubType>compile</SubType>
     </Compile>
