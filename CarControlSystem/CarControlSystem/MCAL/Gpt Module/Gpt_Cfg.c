@@ -12,8 +12,6 @@
 #include "Gpt.h"
 #include "Gpt_Symbols.h"
 
-extern void Gpt_Notification_CH_0(void);
-
 /* PB structure used with GPT_Init API */
 const strGpt_ChannelConfig_t Timers_Configurations[GPT_CONFIGURED_CHANNELS] =
 {
