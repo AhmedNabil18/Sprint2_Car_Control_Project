@@ -11,8 +11,10 @@
 
 #include "..\..\MCAL\Dio Module\Dio.h"
 
+/* Number of Buttons Used in the System */
 #define BUTTONS_USED_NUM		4U
 
+/* ID for each Button used */
 #define BUTTON_1_M		0		
 #define BUTTON_2_L		1		
 #define BUTTON_3_R		2		

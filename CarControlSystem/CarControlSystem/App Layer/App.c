@@ -20,32 +20,6 @@ uint8_t gu8_buttonPressed = 0;
 /*--*-*-*- FUNCTIONS IMPLEMENTATION -*-*-*-*-*-*/
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-* Service Name: CarApp_init
-* Sync/Async: Synchronous
-* Reentrancy: Non reentrant
-* Parameters (in): None
-* Parameters (inout): None
-* Parameters (out): None
-* Return value: enuApp_Status_t - return the status of the function ERROR_OK or NOT_OK
-* Description: Function to Initialize the Application.
-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
-enuApp_Status_t CarApp_init(void)
-{
-	if (enuCurrentAppStatus == APP_STATUS_INITIALIZED)
-	{
-		return APP_STATUS_INITIALIZED;
-	}
-	/* Call the initializer in service layer*/
-	if(SRVC_STATUS_ERROR_OK != Service_init())
-	{
-		return APP_STATUS_ERROR_NOK;
-	}
-	/* Update enuCurrentAppStatus to initialized */
-	enuCurrentAppStatus = APP_STATUS_INITIALIZED;
-	return APP_STATUS_ERROR_OK;
-}
-
-/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 * Service Name: CarApp_start
 * Sync/Async: Synchronous
 * Reentrancy: Non reentrant
@@ -57,17 +31,59 @@ enuApp_Status_t CarApp_init(void)
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 enuApp_Status_t CarApp_start(void)
 {
+	/**************************************************************************************/
+	/*								Function Implementation								  */
+	/**************************************************************************************/
 	/* Initialize the Car application */
-	CarApp_init();
+	if(CarApp_init() != APP_STATUS_ERROR_OK)
+		return APP_STATUS_ERROR_NOK;
 	EnableGlbl_Interrupt();
 	/* Application Super Loop */
 	while (1)
 	{
 		/* Update the car status */
-		CarApp_update();
-		
-		/* Delay */
+		if(CarApp_update() != APP_STATUS_ERROR_OK)
+			return APP_STATUS_ERROR_NOK;
+			
 	}
+}
+
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+* Service Name: CarApp_init
+* Sync/Async: Synchronous
+* Reentrancy: Non reentrant
+* Parameters (in): None
+* Parameters (inout): None
+* Parameters (out): None
+* Return value: enuApp_Status_t - return the status of the function ERROR_OK or NOT_OK
+* Description: Function to Initialize the Application.
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+enuApp_Status_t CarApp_init(void)
+{
+/**************************************************************************************/
+/*								Start of Error Checking								  */
+/**************************************************************************************/
+	/* Check if the Application was already initialized */
+	if (enuCurrentAppStatus == APP_STATUS_INITIALIZED)
+	{
+		return APP_STATUS_INITIALIZED;
+	}
+/**************************************************************************************/
+/*								End of Error Checking								  */
+/**************************************************************************************/
+
+/**************************************************************************************/
+/*								Function Implementation								  */
+/**************************************************************************************/
+
+	/* Call the initializer in service layer */
+	if(SRVC_STATUS_ERROR_OK != Service_init())
+	{
+		return APP_STATUS_ERROR_NOK;
+	}
+	/* Update enuCurrentAppStatus to initialized */
+	enuCurrentAppStatus = APP_STATUS_INITIALIZED;
+	return APP_STATUS_ERROR_OK;
 }
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
@@ -82,8 +98,24 @@ enuApp_Status_t CarApp_start(void)
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 enuApp_Status_t CarApp_update(void)
 {
+/**************************************************************************************/
+/*								Start of Error Checking								  */
+/**************************************************************************************/
+	/* Check if the Application was already initialized */
+	if (enuCurrentAppStatus != APP_STATUS_INITIALIZED)
+	{
+		return APP_STATUS_UNINITIALIZED;
+	}
+/**************************************************************************************/
+/*								End of Error Checking								  */
+/**************************************************************************************/
+
+/**************************************************************************************/
+/*								Function Implementation								  */
+/**************************************************************************************/
 	/* Get Button Pressed */
-	Service_ReportButton(&gu8_buttonPressed);
+	if(Service_ReportButton(&gu8_buttonPressed) != SRVC_STATUS_ERROR_OK)
+		return APP_STATUS_ERROR_NOK;
 	if(gu8_buttonPressed == BUTTON_NULL)
 		gu8_buttonPressed = CAR_BUTTONS_IDLE;
 	/* Fill the enuCurrentButton according to the button pressed */
@@ -91,27 +123,30 @@ enuApp_Status_t CarApp_update(void)
 	{
 	/*******************************************************************************/
 	/*******************************************************************************/
+	/* Case of Move Button is pressed */
 	case CAR_MOVE_HOLD:
 		/* Check if it's already Moving */
 		if(enuCurrentButton == CAR_MOVE_HOLD)
 			break;
+		
 		/* Fill the enuCurrentButton according to the button pressed */
 		enuCurrentButton = CAR_MOVE_HOLD;
 		/* Update the enuCurrentAction */
 		enuCurrentAction = CAR_ACTION_MOVE;
+		/* Check if the Current Gear is in Idle State (Neutral) */
+		if (enuCurrentGear == CAR_STATE_IDLE)
+			break;
 		/* 
 		* Update the Motor according to the enuCurrentAction and enuCurrentGear
 		* Sent to service layer
 		*/
-		if (enuCurrentGear == CAR_STATE_IDLE)
-		{
-			break;
-		}
-		Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)enuCurrentGear);
+		if(Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)enuCurrentGear) != SRVC_STATUS_ERROR_OK)
+			return APP_STATUS_ERROR_NOK;
 		break;
 		
 	/*******************************************************************************/
 	/*******************************************************************************/
+	/* Case of Left Button is pressed */
 	case CAR_LEFT_HOLD:
 		/* Check if it's already Moving Left */
 		if(enuCurrentButton == CAR_LEFT_HOLD)
@@ -124,11 +159,13 @@ enuApp_Status_t CarApp_update(void)
 		* Update the Motor according to the enuCurrentAction and enuCurrentGear
 		* Sent to service layer
 		*/
-		Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)CAR_STATE_30F);
+		if(Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)CAR_STATE_30F) != SRVC_STATUS_ERROR_OK)
+			return APP_STATUS_ERROR_NOK;
 		break;
 		
 	/*******************************************************************************/
 	/*******************************************************************************/
+	/* Case of Right Button is pressed */
 	case CAR_RIGHT_HOLD:
 		/* Check if it's already Moving Right */
 		if(enuCurrentButton == CAR_RIGHT_HOLD)
@@ -141,13 +178,15 @@ enuApp_Status_t CarApp_update(void)
 		* Update the Motor according to the enuCurrentAction and enuCurrentGear
 		* Sent to service layer
 		*/
-		Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)CAR_STATE_30F);
+		if(Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)CAR_STATE_30F) != SRVC_STATUS_ERROR_OK)
+			return APP_STATUS_ERROR_NOK;
 		break;
 		
 	/*******************************************************************************/
 	/*******************************************************************************/
+	/* Case of Gear Button is pressed */
 	case CAR_GEAR_PRESSED:
-		/* Check if it's already Moving Right */
+		/* Check if the button was previously pressed */
 		if(enuCurrentButton == CAR_GEAR_PRESSED)
 			break;
 		/* Fill the enuCurrentButton according to the button pressed */
@@ -177,7 +216,8 @@ enuApp_Status_t CarApp_update(void)
 		* Update the Motor according to the enuCurrentAction and enuCurrentGear
 		* Sent to service layer
 		*/
-		Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)enuCurrentGear);
+		if(Service_UpdateMotors((uint8_t)enuCurrentAction, (uint8_t)enuCurrentGear) != SRVC_STATUS_ERROR_OK)
+			return APP_STATUS_ERROR_NOK;
 		break;
 	default:
 		break;

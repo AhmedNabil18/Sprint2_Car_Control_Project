@@ -7,8 +7,12 @@
 
 #include "Motor.h"
 
-const strMotor_Config_t str_MotorsConfig[MOTORS_USED_NUM] = 
+/*
+ * Array of Structures, each holds the SWPWM Channel, The two Direction pins, 
+ * and the Operating frequency connected with the Motor
+ */
+const strMotor_Config_t str_MotorsConfig[MOTORS_USED_NUM] =
 {
-	{SWPWM_CHANNEL_0_ID,DIO_IN1_CHANNEL_ID,DIO_IN2_CHANNEL_ID,MOTOR_R_OPERATING_FREQ},
-	{SWPWM_CHANNEL_0_ID,DIO_IN3_CHANNEL_ID,DIO_IN4_CHANNEL_ID,MOTOR_L_OPERATING_FREQ}
+	{MOTOR_R_SWPWM_CHANNEL,       MOTOR_R_DIO1_CHANNEL,       MOTOR_R_DIO2_CHANNEL,       MOTOR_R_OPERATING_FREQ},
+	{MOTOR_L_SWPWM_CHANNEL,       MOTOR_L_DIO1_CHANNEL,       MOTOR_L_DIO2_CHANNEL,       MOTOR_L_OPERATING_FREQ}
 };

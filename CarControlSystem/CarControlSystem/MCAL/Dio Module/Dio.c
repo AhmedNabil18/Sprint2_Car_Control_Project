@@ -55,6 +55,7 @@ enuDio_Status_t Dio_init(strDio_Config_t* pstrDio_pins)
 /**************************************************************************************/
 	for (u8_loopIndex=0; u8_loopIndex<DIO_USED_PINS_NUM; u8_loopIndex++)
 	{
+		/* Check if the pin number is out of range */
 		if ((pstrDio_pins[u8_loopIndex].u8_PinNum) > PIN_7)
 		{
 			return DIO_STATUS_PIN_NUM_INVALID;
@@ -90,6 +91,7 @@ enuDio_Status_t Dio_init(strDio_Config_t* pstrDio_pins)
 		}
 	}
 	pstrDio_pinsConfig = pstrDio_pins;
+	/* Change the status of the DIO Module to initialized */
 	u8_Dio_Status = DIO_INITIALIZED;
 	return DIO_STATUS_ERROR_OK;
 }

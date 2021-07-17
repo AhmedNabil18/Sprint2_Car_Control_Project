@@ -6,6 +6,7 @@
  */ 
 #include "Button.h"
 
+/* Array holds the used Buttons' DIO Channels */
 uint8_t gau8_buttonsUsed[BUTTONS_USED_NUM] =
 {
 	DIO_BUTTON1_PD0_CHANNEL_ID, 

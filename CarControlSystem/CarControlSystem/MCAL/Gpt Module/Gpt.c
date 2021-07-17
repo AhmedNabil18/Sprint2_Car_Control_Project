@@ -19,6 +19,7 @@ static void (*Gpt_Timer0_CallBackPtr)(void);
  *******************************************************************************/
 enuGpt_State_t enuChannelsState[GPT_CONFIGURED_CHANNELS] = {GPT_UNINITIALIZED};
 uint32_t u32_Channels_ISR_Count[GPT_CONFIGURED_CHANNELS] = {0};
+enuGpt_State_t genu_GPTModStatus = GPT_UNINITIALIZED;
 /*******************************************************************************
  *                      Function Definitions                                   *
  *******************************************************************************/
@@ -37,7 +38,13 @@ enuGpt_Status_t GptInit( void )
 /**************************************************************************************/
 /*								Start of Error Checking								  */
 /**************************************************************************************/
-/* Check if the input parameter is NULL */
+	/* Check if the module was already initialized */
+	if (genu_GPTModStatus == GPT_INITIALIZED)
+	{
+		return GPT_STATUS_ERROR_ALREADY_INIT;
+	}else{/*Nothing to here*/}
+		
+	/* Check if the input parameter is NULL */
 	if (NULL_PTR == Timers_Configurations)
 	{
 		return GPT_STATUS_ERROR_NULL_ARG;
@@ -84,6 +91,7 @@ enuGpt_Status_t GptInit( void )
 		}
 		enuChannelsState[u8_loopIndex] = GPT_INITIALIZED;
 	}
+	genu_GPTModStatus = GPT_INITIALIZED;
 	return GPT_STATUS_ERROR_OK;
 }
 
@@ -361,6 +369,7 @@ enuGpt_Status_t GptStop( u8Gpt_Channel_t ChannelId )
 		default:
 		return GPT_STATUS_ERROR_INVALID_TIMER_NUM;
 	}
+	/* Change the state of the Timer Channel to stopped */
 	enuChannelsState[ChannelId] = GPT_STOPPED;
 	return GPT_STATUS_ERROR_OK;
 }

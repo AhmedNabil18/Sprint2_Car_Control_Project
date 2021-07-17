@@ -51,8 +51,12 @@ enuBttn_Status_t Button_init(void)
 /**************************************************************************************/
 /*								Function Implementation								  */
 /**************************************************************************************/
-	if(DIO_STATUS_ERROR_OK != Dio_init(strDio_pins))
+	/* Initialize the DIO Module and check if any error returned */
+	enuDio_Status_t Dio_State = Dio_init(strDio_pins);
+	if((DIO_STATUS_ERROR_OK != Dio_State) && (DIO_STATUS_ALREADY_INIT != Dio_State))
 		return BTTN_STATUS_ERROR_NOK;
+		
+	/* Change the state of the Button module to Initialized */
 	genu_BttnModuleState = BTTN_STATUS_INIT;
 	return BTTN_STATUS_ERROR_OK;
 }
@@ -124,13 +128,15 @@ enuBttn_Status_t Button_updateState(uint8_t u8_bttnID)
 	uint8_t u8_valueTemp=0;
 	uint32_t u32_loopIndex = 0;
 	/* Read the Pin and put its state in the global variable */
-	Dio_readPin(gau8_buttonsUsed[u8_bttnID], &u8_valueTemp);
+	if(Dio_readPin(gau8_buttonsUsed[u8_bttnID], &u8_valueTemp) != DIO_STATUS_ERROR_OK)
+		return BTTN_STATUS_ERROR_NOK;
 	if(u8_valueTemp == PIN_HIGH)
 	{
 		/* De bouncing Delay */
 		for(u32_loopIndex=0; u32_loopIndex<3000; u32_loopIndex++);
 		/* De bouncing Check */
-		Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp);
+		if(Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp) != DIO_STATUS_ERROR_OK)
+			return BTTN_STATUS_ERROR_NOK;
 		if(u8_valueTemp == PIN_HIGH)
 			gu8_ButtonsState[u8_bttnID] = BUTTON_STATE_PRESSED;
 	}else if (u8_valueTemp == PIN_LOW)
@@ -138,7 +144,8 @@ enuBttn_Status_t Button_updateState(uint8_t u8_bttnID)
 		/* De bouncing Delay */
 		for(u32_loopIndex=0; u32_loopIndex<3000; u32_loopIndex++);
 		/* De bouncing Check */
-		Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp);
+		if(Dio_readPin(gau8_buttonsUsed[u8_bttnID],&u8_valueTemp) != DIO_STATUS_ERROR_OK)
+			return BTTN_STATUS_ERROR_NOK;
 		if(u8_valueTemp == PIN_LOW)
 			gu8_ButtonsState[u8_bttnID] = BUTTON_STATE_RELEASED;
 	}

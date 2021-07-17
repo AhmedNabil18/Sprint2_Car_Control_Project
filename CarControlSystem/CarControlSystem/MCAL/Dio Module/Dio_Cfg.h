@@ -31,10 +31,10 @@
 #define DioConf_BUTTON2_PIN_NUM				 PIN_1 /* Pin 1 in PORTD */
 #define DioConf_BUTTON3_PIN_NUM				 PIN_2 /* Pin 2 in PORTD */
 #define DioConf_BUTTON4_PIN_NUM				 PIN_3 /* Pin 3 in PORTD */
-#define DioConf_IN1_PIN_NUM			   		 PIN_7
-#define DioConf_IN2_PIN_NUM			   		 PIN_6
-#define DioConf_IN3_PIN_NUM			   		 PIN_5
-#define DioConf_IN4_PIN_NUM			   		 PIN_4
+#define DioConf_IN1_PIN_NUM			   		 PIN_4
+#define DioConf_IN2_PIN_NUM			   		 PIN_5
+#define DioConf_IN3_PIN_NUM			   		 PIN_6
+#define DioConf_IN4_PIN_NUM			   		 PIN_7
 #define DioConf_PWM_PIN_NUM			   		 PIN_6
 
 /* Channel Index in the array of structures in Dio_Cfg.c */
