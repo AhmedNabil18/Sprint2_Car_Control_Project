@@ -16,7 +16,7 @@ extern  uint8_t gau8_buttons[BUTTONS_USED_NUM];
 /*--*-*-*- FUNCTIONS IMPLEMENTATION -*-*-*-*-*-*/
 
 /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-* Service Name: CarApp_init
+* Service Name: Service_init
 * Sync/Async: Synchronous
 * Reentrancy: Non reentrant
 * Parameters (in): None
